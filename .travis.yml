@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true mallama/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-1"
+  app: "Docker-React-Beanstalk"
+  env: "Docker-React-Beanstalk-env"
+  bucket_name: "elasticbeanstalk-us-west-1-130656241105"
+  bucket_path: "Docker-React-Beanstalk"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
